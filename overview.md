@@ -1,4 +1,6 @@
 # Azure Devops Extension- PublishHTMLReport
+
+> **This is a maintained fork.** It is based on the original [PublishHTMLReports](https://marketplace.visualstudio.com/items?itemName=LakshayKaushik.PublishHTMLReports) extension by **Lakshay Kaushik** (original source: https://github.com/lakshaykaushik/PublishHTMLReport). This version, maintained at https://github.com/ShiftLeftSec/HTMLPublisher, updates the task to run on supported Node.js versions (Node 20 / 24) because Node 10 is retired in Azure Pipelines. All credit for the original extension goes to its author.
 This extension can be used in Azure devops to publish Jmeter HTML reports as a seperate tab(Parallel to Summary tab). Right now full support of Jmeter report and any generic html report has been developed, however this extension can also be extended to publish other complex HTML reports as well.
 
 This extension has been tested with the following Jmeter versions:
@@ -12,7 +14,7 @@ The file structure of Jmeter reports in version 4 and 5 hasn't changed, so it is
 ## Usage:
 
 ### 1. Install the below extension in your azure devops org:
-https://marketplace.visualstudio.com/items?itemName=LakshayKaushik.PublishHTMLReports&targetId=c2bac9a7-71cb-49a9-84a5-acfb8db48105&utm_source=vstsproduct&utm_medium=ExtHubManageList
+https://marketplace.visualstudio.com/items?itemName=PhilYoung.PublishHTMLReports
 
 
 
@@ -88,7 +90,7 @@ Steps to build:
 
 ### 1. Take a git clone of this repo:
 ```
-git clone https://github.com/lakshaykaushik/PublishHTMLReport.git
+git clone https://github.com/ShiftLeftSec/HTMLPublisher.git
 
 ```
 
