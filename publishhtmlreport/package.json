@@ -1,20 +1,21 @@
 {
   "name": "publishhtmlreport",
-  "version": "1.2.174",
+  "version": "1.3.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle": "esbuild index.ts --bundle --platform=node --target=node20 --outfile=../taskdist/index.js && cp task.json ../taskdist/task.json"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "azure-pipelines-task-lib": "^3.0.6-preview.0"
+    "azure-pipelines-task-lib": "^5.2.0",
+    "cheerio": "^1.0.0"
   },
   "devDependencies": {
-    "@types/node": "^10.17.44",
-    "@types/q": "^1.5.4",
-    "cheerio": "^1.0.0-rc.6",
-    "typescript": "^4.0.2"
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.6.0"
   }
 }

@@ -1,4 +1,4 @@
-FROM openjdk:12-jdk-oraclelinux7
+FROM eclipse-temurin:11-jdk
 
 
 ARG VERSION="5.3"

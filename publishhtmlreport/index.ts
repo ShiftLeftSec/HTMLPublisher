@@ -100,7 +100,7 @@ async function run() {
         }
     }
     catch (err) {
-        tl.setResult(tl.TaskResult.Failed, err.message);
+        tl.setResult(tl.TaskResult.Failed, err instanceof Error ? err.message : String(err));
     }
 }
 

@@ -9,8 +9,8 @@
     "author": "LakshayKaushik",
     "version": {
         "Major": 1,
-        "Minor": 2,
-        "Patch": 174
+        "Minor": 3,
+        "Patch": 0
     },
     "instanceNameFormat": "publishhtmlreport",
     "inputs": [
@@ -40,7 +40,10 @@
         }
     ],
     "execution": {
-        "Node10": {
+        "Node24": {
+            "target": "index.js"
+        },
+        "Node20_1": {
             "target": "index.js"
         }
     }

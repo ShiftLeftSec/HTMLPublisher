@@ -14,3 +14,4 @@ publishhtmlreport/.DS_Store
 .DS_Store
 
 *.env
+taskdist/
