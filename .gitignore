@@ -15,3 +15,6 @@ publishhtmlreport/.DS_Store
 
 *.env
 taskdist/
+dist/
+publishhtmlreport/scriptFiles.js
+jquery.tablesorter.min.js
