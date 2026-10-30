@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
-    "id": "PublishHTMLReports",
-    "version": "1.3.1",
+    "id": "HTMLPublisher",
+    "version": "1.3.3",
     "name": "PublishHTMLReports",
     "description": "Fork of Lakshay Kaushik's PublishHTMLReports, updated to run on current Node.js versions. Lets you publish and visualize HTML reports(Like Jmeter load test reports) in Azure Devops as a seperate tab. ",
     "publisher": "PhilYoung",

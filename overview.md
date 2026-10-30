@@ -8,13 +8,14 @@ This extension has been tested with the following Jmeter versions:
 1. 4.0
 2. 5.0
 3. 5.3
+4. 5.6.3
 
 The file structure of Jmeter reports in version 4 and 5 hasn't changed, so it is expected that this extension will work for all 4.* and 5.* versions of jmeter.
 
 ## Usage:
 
 ### 1. Install the below extension in your azure devops org:
-https://marketplace.visualstudio.com/items?itemName=PhilYoung.PublishHTMLReports
+https://marketplace.visualstudio.com/items?itemName=PhilYoung.HTMLPublisher
 
 
 

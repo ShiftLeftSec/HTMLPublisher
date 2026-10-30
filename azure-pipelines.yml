@@ -1,0 +1,36 @@
+# Test pipeline: runs a small JMeter load test and publishes the dashboard
+# with the PublishHTMLReports extension (tab: "Published HTML").
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  JMETER_VERSION: '5.6.3'
+  TARGET_HOST: 'example.com'
+  TARGET_PORT: '80'
+  TARGET_PATH: '/'
+  TARGET_KEYWORD: 'Example Domain'
+  THREADS: '2'
+
+steps:
+  - script: |
+      curl -fsSL https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-$(JMETER_VERSION).tgz | tar xz
+    displayName: Download JMeter $(JMETER_VERSION)
+
+  - script: |
+      rm -rf $(Build.ArtifactStagingDirectory)/LoadReports
+      apache-jmeter-$(JMETER_VERSION)/bin/jmeter -n -t test.jmx \
+        -JTARGET_HOST=$(TARGET_HOST) -JTARGET_PORT=$(TARGET_PORT) \
+        -JTARGET_PATH=$(TARGET_PATH) -JTARGET_KEYWORD="$(TARGET_KEYWORD)" \
+        -JTHREADS=$(THREADS) \
+        -l $(Build.ArtifactStagingDirectory)/results.jtl \
+        -e -o $(Build.ArtifactStagingDirectory)/LoadReports
+    displayName: Run JMeter test and generate dashboard
+
+  - task: publishhtmlreport@1
+    displayName: Publish JMeter report
+    condition: always()
+    inputs:
+      htmlType: 'Jmeter'
+      JmeterReportsPath: '$(Build.ArtifactStagingDirectory)/LoadReports'

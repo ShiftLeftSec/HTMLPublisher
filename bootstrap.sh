@@ -6,7 +6,7 @@ docker rm -f jmeter
 
 
 # Set jmeter version the extension should support
-VERSION='5.3'
+VERSION='5.6.3'
 URL=https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${VERSION}.tgz
 
 curl $URL > apache-jmeter-${VERSION}.tgz

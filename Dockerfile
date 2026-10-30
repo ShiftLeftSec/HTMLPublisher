@@ -1,7 +1,7 @@
-FROM eclipse-temurin:11-jdk
+FROM eclipse-temurin:17-jdk
 
 
-ARG VERSION="5.3"
+ARG VERSION="5.6.3"
 
 COPY apache-jmeter-${VERSION}.tar /opt/
 COPY run.sh /

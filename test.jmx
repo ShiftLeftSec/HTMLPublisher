@@ -68,7 +68,7 @@ Connect to 5s</stringProp>
         <hashTree>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Test-Keyword" enabled="true">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="-1283727093">${TARGET_KEYWORD}</stringProp>
+              <stringProp name="-1283727093">${__P(TARGET_KEYWORD,Example Domain)}</stringProp>
             </collectionProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
@@ -94,7 +94,7 @@ Connect to 5s</stringProp>
           <collectionProp name="Arguments.arguments">
             <elementProp name="TARGET_HOST" elementType="Argument">
               <stringProp name="Argument.name">TARGET_HOST</stringProp>
-              <stringProp name="Argument.value">test</stringProp>
+              <stringProp name="Argument.value">${__P(TARGET_HOST,example.com)}</stringProp>
               <stringProp name="Argument.desc">target server domain/IP for testing</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
@@ -106,7 +106,7 @@ Connect to 5s</stringProp>
             </elementProp>
             <elementProp name="TARGET_PATH" elementType="Argument">
               <stringProp name="Argument.name">TARGET_PATH</stringProp>
-              <stringProp name="Argument.value">test</stringProp>
+              <stringProp name="Argument.value">${__P(TARGET_PATH,/)}</stringProp>
               <stringProp name="Argument.desc">target path on target server</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
