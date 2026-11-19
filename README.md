@@ -93,51 +93,14 @@ Relevant files can be html, css or js files which can be appended in the html pa
 
 ## Build Process of the extension.
 
-Before building the extension, you need to have docker engine installed on your local machine or if you are doing a build in a CI pipeline, docker engine needs to be installed on the pipeline agent too. 
+The full step by step build instructions (prerequisites, Docker bootstrap, versioning, building, verifying and publishing the vsix, starting from a fresh clone) are in **[BUILD.md](./BUILD.md)**.
 
-Steps to build:
+In short:
 
-### 1. Take a git clone of this repo:
-```
-git clone https://github.com/ShiftLeftSec/HTMLPublisher.git
+1. Install Docker, Node.js and npm.
+2. `git clone https://github.com/ShiftLeftSec/HTMLPublisher.git`
+3. `./bootstrap.sh` (generates the JMeter template files using Docker and runs `npm install`)
+4. Bump the version in `package.json`, `publishhtmlreport/package.json`, `vss-extension.json` and `publishhtmlreport/task.json`
+5. `npm run build` (generates the vsix)
 
-```
-
-### 2. Specify version of Jmeter in bootstrap.sh, run.sh and Dockerfile. Then run bootstrap.sh 
-
-Running this script will bootstrap your local repo and include essential files needed to build the extension.
-
-### 3. Now increment the build version in task.json and vss-extension.json. 
-
-```
-"manifestVersion": 1,
-    "id": "PublishHTMLReports",
-    "version": "1.1.33",
-    "name": "PublishHTMLReports",
-    "description": "An extension which lets you publish and visualize HTML reports in Azure Devops as a seperate tab",
-    "publisher": "LakshayKaushik",
-```
-```
- "name": "publishhtmlreport",
-    "friendlyName": "publishhtmlreport",
-    "description": "This task can be used to publish html reports to azdo. Currently Jmeter HTML reports are being transformed to be consumed into Azdo directly",
-    "helpMarkDown": "",
-    "category": "Utility",
-    "author": "LakshayKaushik",
-    "version": {
-        "Major": 1,
-        "Minor": 1,
-        "Patch": 25
-```
-        
-
-### 4. Generate vsix file.
-
-Run ```publishhtmlreport/tsc``` and ```npm run build```, this will generate vsix file which can be uploaded to the marketplace.
-
-### Note: 
-Alternatively, follow the [AutoPackageAndPublish.md](./AutoPackageAndPublish.md) that would automatically bump the version, package the extenstion then publish it.
-
-This project welcomes contributions and suggestions, see more information on contributing in CONTRIBUTING.md
-
-
+To bump the version, build and publish automatically, see [AutoPackageAndPublish.md](./AutoPackageAndPublish.md).
