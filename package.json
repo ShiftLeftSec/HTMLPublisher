@@ -1,6 +1,6 @@
 {
   "name": "publishhtmlreport",
-  "version": "1.3.4",
+  "version": "1.3.5",
   "description": "A simple extension that demonstrates how to extend build summary page.",
   "scripts": {
     "build": "tsc -p .",
