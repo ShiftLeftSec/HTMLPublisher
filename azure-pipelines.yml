@@ -14,33 +14,33 @@ variables:
   THREADS: '2'
 
 steps:
-# - script: |
-#     echo "<html><body>This is some test content.</body></html>" > testfile.html
-#   displayName: 'Run a multi-line script'
-# - task: publishhtmlreport@1
-#   inputs:
-#     htmlType: 'genericHTML'
-#     htmlPath: '$(Build.SourcesDirectory)/testfile.html'
+- script: |
+    echo "<html><body>This is some test content.</body></html>" > testfile.html
+  displayName: 'Run a multi-line script'
+- task: publishhtmlreport@1
+  inputs:
+    htmlType: 'genericHTML'
+    htmlPath: '$(Build.SourcesDirectory)/testfile.html'
 
 #Test pipeline: runs a small JMeter load test and publishes the dashboard
 #with the PublishHTMLReports extension (tab: "Published HTML").
-  - script: |
-      curl -fsSL https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-$(JMETER_VERSION).tgz | tar xz
-    displayName: Download JMeter $(JMETER_VERSION)
+  # - script: |
+  #     curl -fsSL https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-$(JMETER_VERSION).tgz | tar xz
+  #   displayName: Download JMeter $(JMETER_VERSION)
 
-  - script: |
-      rm -rf $(Build.ArtifactStagingDirectory)/LoadReports
-      apache-jmeter-$(JMETER_VERSION)/bin/jmeter -n -t test.jmx \
-        -JTARGET_HOST=$(TARGET_HOST) -JTARGET_PORT=$(TARGET_PORT) \
-        -JTARGET_PATH=$(TARGET_PATH) -JTARGET_KEYWORD="$(TARGET_KEYWORD)" \
-        -JTHREADS=$(THREADS) \
-        -l $(Build.ArtifactStagingDirectory)/results.jtl \
-        -e -o $(Build.ArtifactStagingDirectory)/LoadReports
-    displayName: Run JMeter test and generate dashboard
+  # - script: |
+  #     rm -rf $(Build.ArtifactStagingDirectory)/LoadReports
+  #     apache-jmeter-$(JMETER_VERSION)/bin/jmeter -n -t test.jmx \
+  #       -JTARGET_HOST=$(TARGET_HOST) -JTARGET_PORT=$(TARGET_PORT) \
+  #       -JTARGET_PATH=$(TARGET_PATH) -JTARGET_KEYWORD="$(TARGET_KEYWORD)" \
+  #       -JTHREADS=$(THREADS) \
+  #       -l $(Build.ArtifactStagingDirectory)/results.jtl \
+  #       -e -o $(Build.ArtifactStagingDirectory)/LoadReports
+  #   displayName: Run JMeter test and generate dashboard
 
-  - task: publishhtmlreport@1
-    displayName: Publish JMeter report
-    condition: always()
-    inputs:
-      htmlType: 'Jmeter'
-      JmeterReportsPath: '$(Build.ArtifactStagingDirectory)/LoadReports'
+  # - task: publishhtmlreport@1
+  #   displayName: Publish JMeter report
+  #   condition: always()
+  #   inputs:
+  #     htmlType: 'Jmeter'
+  #     JmeterReportsPath: '$(Build.ArtifactStagingDirectory)/LoadReports'
