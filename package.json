@@ -6,7 +6,7 @@
     "build": "tsc -p .",
     "postbuild": "npm run package",
     "package": "tfx extension create",
-    "clean": "rimraf ./dist && rimraf ./*.vsix",
+    "clean": "rimraf ./dist && rimraf --glob ./*.vsix",
     "prebuild": "cd publishhtmlreport && npm run bundle"
   },
   "repository": {
@@ -18,9 +18,13 @@
     "@types/jquery": "^2.0.48",
     "@types/q": "^0.0.32",
     "ncp": "^2.0.0",
-    "rimraf": "^3.0.2",
+    "rimraf": "^6.1.4",
     "tfx-cli": "^0.24.2",
     "typescript": "^4.0.5",
     "vss-web-extension-sdk": "^4.125.2"
+  },
+  "overrides": {
+    "glob": "^14.0.6",
+    "minimatch": "^11.0.9"
   }
 }
