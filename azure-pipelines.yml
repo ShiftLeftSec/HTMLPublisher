@@ -22,8 +22,8 @@ steps:
 #     htmlType: 'genericHTML'
 #     htmlPath: '$(Build.SourcesDirectory)/testfile.html'
 
-Test pipeline: runs a small JMeter load test and publishes the dashboard
-with the PublishHTMLReports extension (tab: "Published HTML").
+#Test pipeline: runs a small JMeter load test and publishes the dashboard
+#with the PublishHTMLReports extension (tab: "Published HTML").
   - script: |
       curl -fsSL https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-$(JMETER_VERSION).tgz | tar xz
     displayName: Download JMeter $(JMETER_VERSION)
