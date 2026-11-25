@@ -1,0 +1,51 @@
+# Build pipeline: produces the extension .vsix and publishes it as a pipeline artifact.
+# Publishing to the Marketplace is intentionally NOT done here (see the commented stage at the bottom).
+trigger:
+  branches:
+    include:
+    - main
+
+pr: none
+
+pool:
+  vmImage: ubuntu-latest   # has Docker preinstalled, which bootstrap.sh needs
+
+steps:
+- task: NodeTool@0
+  displayName: 'Use Node.js 22'
+  inputs:
+    versionSpec: '22.x'
+
+# Generates the git-ignored template files (sbadmin2, content/css, jquery.tablesorter)
+# via a JMeter docker run, then runs npm install in the root and in publishhtmlreport/.
+# Note: takes a few minutes (the script sleeps while JMeter generates the report).
+- script: ./bootstrap.sh
+  displayName: 'Bootstrap (JMeter template + npm install)'
+
+# prebuild: esbuild bundle of the task -> taskdist/
+# build:    tsc -p . (tab script -> dist/)
+# postbuild: tfx extension create -> *.vsix
+- script: npm run build
+  displayName: 'Build and package VSIX'
+
+- script: |
+    ls -l *.vsix
+    unzip -l *.vsix | grep -c sbadmin2-1.0.7
+  displayName: 'Sanity check VSIX contents'
+
+- task: CopyFiles@2
+  displayName: 'Stage VSIX'
+  inputs:
+    Contents: '*.vsix'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish VSIX artifact'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'vsix'
+
+# To publish to the Marketplace from the pipeline, add a step using the Azure DevOps
+# "Extension Tasks" extension (ms-devlabs.vsts-developer-tools-build-tasks) or:
+#   npx tfx extension publish --vsix <file> --share-with <org> --token $(AZDO_TOKEN)
+# with AZDO_TOKEN stored as a secret pipeline variable.
