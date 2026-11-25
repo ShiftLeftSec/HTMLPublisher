@@ -42,7 +42,11 @@ npm install
 cd publishhtmlreport
 npm install
 # Rename unsupported file name
-mv node_modules/resolve/.github/workflows/node-4+.yml node_modules/resolve/.github/workflows/node-4.yml
+# (only present in older dependency trees, so don't fail if it's missing)
+RESOLVE_YML=node_modules/resolve/.github/workflows/node-4+.yml
+if [ -f "$RESOLVE_YML" ]; then
+    mv "$RESOLVE_YML" node_modules/resolve/.github/workflows/node-4.yml
+fi
 
 
 ## After Running bootstrap.sh, the repo is ready to be built. Do the usual npm run build to generate the vsix after updating the version number
